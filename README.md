@@ -1,36 +1,262 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🤖 CodeReviewAI
 
-## Getting Started
+> **Ship better code, faster.** Automated AI-powered code reviews that catch bugs, security issues, and maintainability problems before they reach production.
 
-First, run the development server:
+![CodeReviewAI Preview](https://i.ytimg.com/vi/gRyMcPGF2o0/hqdefault.jpg)
+
+---
+
+## 🏷️ Badges
+
+[![Next.js](https://img.shields.io/badge/Next.js_16-000000?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![npm](https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white)](https://www.npmjs.com/)
+[![pnpm](https://img.shields.io/badge/pnpm-F69220?style=for-the-badge&logo=pnpm&logoColor=white)](https://pnpm.io/)
+[![Prisma](https://img.shields.io/badge/Prisma-2D3748?style=for-the-badge&logo=prisma&logoColor=white)](https://www.prisma.io/)
+[![Tailwind CSS v4](https://img.shields.io/badge/Tailwind_CSS_v4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![shadcn/ui](https://img.shields.io/badge/shadcn%2Fui-000000?style=for-the-badge&logo=shadcnui&logoColor=white)](https://ui.shadcn.com/)
+[![GitHub OAuth](https://img.shields.io/badge/GitHub_OAuth-181717?style=for-the-badge&logo=github&logoColor=white)](https://docs.github.com/en/apps/oauth-apps)
+[![GitHub Webhooks](https://img.shields.io/badge/GitHub_Webhooks-181717?style=for-the-badge&logo=github&logoColor=white)](https://docs.github.com/en/webhooks)
+[![Better Auth](https://img.shields.io/badge/Better_Auth-6366F1?style=for-the-badge&logo=auth0&logoColor=white)](https://better-auth.com/)
+[![Inngest](https://img.shields.io/badge/Inngest-5C2D91?style=for-the-badge&logo=inngest&logoColor=white)](https://www.inngest.com/)
+[![Grok SDK](https://img.shields.io/badge/Grok_SDK-FF6600?style=for-the-badge&logo=x&logoColor=white)](https://x.ai/)
+
+---
+
+## ✨ Features
+
+- 🔍 **Instant Feedback** — Comprehensive code reviews in seconds, not hours
+- 🔒 **Security Scanning** — Automatically detect vulnerabilities and exposed secrets
+- 💡 **Clear Suggestions** — Actionable feedback you can apply immediately
+- 🔗 **PR Integration** — Reviews appear directly inside your pull requests
+- 🧠 **Context Aware** — Understands your codebase patterns and style
+- 🚀 **Always Improving** — Powered by the latest Grok AI models
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer              | Technology                  |
+| ------------------ | --------------------------- |
+| Framework          | Next.js 16 (App Router)     |
+| Language           | TypeScript                  |
+| Styling            | Tailwind CSS v4 + shadcn/ui |
+| Database ORM       | Prisma (PostgreSQL)         |
+| Authentication     | Better Auth + GitHub OAuth  |
+| Background Jobs    | Inngest                     |
+| AI Model           | Grok SDK (xAI)              |
+| GitHub Integration | GitHub Webhooks             |
+| Package Manager    | pnpm                        |
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 20+
+- pnpm
+- PostgreSQL database
+- GitHub OAuth App
+- Grok API key (xAI)
+
+### Installation
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# Clone the repository
+git clone https://github.com/your-username/ai-code-reviewer.git
+cd ai-code-reviewer
+
+# Install dependencies
+pnpm install
+
+# Copy environment variables
+cp .env.example .env
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Environment Variables
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```env
+DATABASE_URL="postgresql://..."
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+# GitHub OAuth
+GITHUB_CLIENT_ID=
+GITHUB_CLIENT_SECRET=
 
-## Learn More
+# Better Auth
+BETTER_AUTH_SECRET=
+BETTER_AUTH_URL=http://localhost:3000
 
-To learn more about Next.js, take a look at the following resources:
+# Grok / xAI
+GROK_API_KEY=
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Inngest
+INNGEST_EVENT_KEY=
+INNGEST_SIGNING_KEY=
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# GitHub Webhooks
+GITHUB_WEBHOOK_SECRET=
+```
 
-## Deploy on Vercel
+### Setup & Run
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+# Push database schema
+pnpm prisma db push
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# Generate Prisma client
+pnpm prisma generate
+
+# Start development server
+pnpm dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+---
+
+## 🗄️ Database Schema (ERD)
+
+```mermaid
+erDiagram
+    User {
+        String id PK
+        String name
+        String email UK
+        Boolean emailVerified
+        String image
+        DateTime createdAt
+        DateTime updatedAt
+    }
+
+    Session {
+        String id PK
+        DateTime expiresAt
+        String token UK
+        DateTime createdAt
+        DateTime updatedAt
+        String ipAddress
+        String userAgent
+        String userId FK
+    }
+
+    Account {
+        String id PK
+        String accountId
+        String providerId
+        String userId FK
+        String accessToken
+        String refreshToken
+        String idToken
+        DateTime accessTokenExpiresAt
+        DateTime refreshTokenExpiresAt
+        String scope
+        String password
+        DateTime createdAt
+        DateTime updatedAt
+    }
+
+    Verification {
+        String id PK
+        String identifier
+        String value
+        DateTime expiresAt
+        DateTime createdAt
+        DateTime updatedAt
+    }
+
+    Repository {
+        String id PK
+        String userId FK
+        Int githubId UK
+        String name
+        String fullName
+        Boolean private
+        String htmlUrl
+        DateTime createdAt
+        DateTime updatedAt
+    }
+
+    Review {
+        String id PK
+        String repositoryId FK
+        String userId FK
+        Int prNumber
+        String prTitle
+        String prUrl
+        ReviewStatus status
+        String summary
+        Int riskScore
+        Json comments
+        String error
+        DateTime createdAt
+        DateTime updatedAt
+    }
+
+    User ||--o{ Session : "has"
+    User ||--o{ Account : "has"
+    User ||--o{ Repository : "owns"
+    User ||--o{ Review : "requests"
+    Repository ||--o{ Review : "receives"
+```
+
+---
+
+## 📁 Project Structure
+
+```
+├── app/
+│   ├── (auth)/
+│   │   ├── sign-in/
+│   │   └── sign-up/
+│   ├── (dashboard)/
+│   │   ├── dashboard/
+│   │   └── repositories/
+│   ├── api/
+│   │   ├── auth/
+│   │   ├── inngest/
+│   │   └── webhooks/github/
+│   └── page.tsx
+├── components/
+│   └── ui/
+├── lib/
+│   ├── auth.ts
+│   ├── db.ts
+│   ├── inngest/
+│   └── grok.ts
+├── prisma/
+│   └── schema.prisma
+└── public/
+```
+
+---
+
+## 🔄 How It Works
+
+```
+GitHub PR Opened
+      │
+      ▼
+GitHub Webhook ──► /api/webhooks/github
+      │
+      ▼
+Inngest Event Triggered
+      │
+      ▼
+Background Job: Fetch PR Diff
+      │
+      ▼
+Grok AI Analysis
+      │
+      ▼
+Post Review Comments to GitHub PR
+      │
+      ▼
+Save Review to Database (Prisma + PostgreSQL)
+```
+
+---
+
+## 📄 License
+
+MIT © 2026 CodeReviewAI
