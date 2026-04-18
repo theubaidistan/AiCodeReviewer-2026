@@ -7,4 +7,4 @@ ignoredBuiltDependencies:
 
 onlyBuiltDependencies:
   - prisma
-  - @prisma/client
+  - "@prisma/client"
